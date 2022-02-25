@@ -19,11 +19,11 @@ console.log(mockUpStrand());
 // criar função que tenha 2 parametros
 // O primeiro parâmetro é um número (dois organismos não devem ter o mesmo número).
 // O segundo parâmetro é uma matriz de 15 bases de DNA.
-// pAequorFactory()deve retornar um objeto que contenha as propriedades specimenNume dnaque correspondam aos parâmetros fornecidos.
+// pAequorFactory()deve retornar um objeto que contenha as propriedades specimenNum e dna que correspondam aos parâmetros fornecidos.
 
 // Sua equipe quer que você simule a alta taxa de mutação do P. aequor (mudança em seu DNA).
 
-// Para simular uma mutação, no pAequorFactory()objeto retornado de , adicione o método .mutate().
+// Para simular uma mutação, no pAequorFactory() objeto retornado de , adicione o método .mutate().
 
 console.log("---- APOS A MUTAÇÃO");
 
@@ -34,21 +34,21 @@ const pAequorFactory = (number, array) => {
 
     mutate() {
       // aqui ele vai selecionar aleatoriamente uma base na propriedade do objeto DNA
-      let randonIndex = Math.floor(Math.random() * dna.length);
+      let randomIndex = Math.floor(Math.random() * this.dna.length);
 
       // gerar uma nova base aleatoriamente (mutada)
-      // se a 1a base dor A, a base nova deve ser alterada para T, C ou G
+      // se a 1a base for A, a base nova deve ser alterada para T, C ou G
       let newBase = returnRandBase();
 
       //  certifique-se de que a base atual e a base gerada não sejam as mesmas
-      if (this.dna[randonIndex] === newBase) {
+      if (this.dna[randomIndex] === newBase) {
         return `${newBase} Não houve mutacao`
       } else {
-        return `${randonIndex} Houve mutacao`
+        return `${randomIndex} Houve mutacao`
       }
     },
     // comparar as sequencias do DNA
-    // O comportamento de .compareDNA()é comparar os pAequor's de corrente com os ' s .dnapassados ​​e calcular quantas bases são idênticas e nas mesmas localizações. não retorna nada, mas imprime uma mensagem informando a porcentagem de DNA que os dois objetos têm em comum — use o para identificar quais objetos estão sendo comparados.pAequor.dna.compareDNA().specimenNumpAequor
+    // O comportamento de .compareDNA()é comparar os pAequor's de corrente com os pAequor's .dna passados ​​e calcular quantas bases são idênticas e nas mesmas localizações. não retorna nada, mas imprime uma mensagem informando a porcentagem de DNA que os dois objetos têm em comum — use o para identificar quais objetos estão sendo comparados.pAequor.dna.compareDNA().specimenNumpAequor
 
     // exemplo
     // ex1 = ['A', 'C', 'T', 'G']
@@ -65,7 +65,7 @@ const pAequorFactory = (number, array) => {
         // pegando cada elemento da arr Original
         for (let j=0; j < originalDNA.length; j++){
           // comparando se os elementos são iguais e estao no mesmo index
-          if (i === j && mutateDNA[j] === originalDNA[j]) {
+          if (i === j && mutateDNA[i] === originalDNA[j]) {
             // adicionar 1 a cada comparativo verdadeiro
             comparative  = comparative +1;
           }
@@ -77,6 +77,7 @@ const pAequorFactory = (number, array) => {
     // P. aequor tem uma chance mais provável de sobrevivência se seu DNA for composto de pelo menos 60% 'C'de 'G'bases.
     // No objeto retornado de pAequorFactory(), adicione outro método .willLikelySurvive().
     // .willLikelySurvive()retorna se a matriz true do objeto contiver pelo menos 60% ou bases. Caso contrário, retorna falso..dna'C''G'.willLikelySurvive()
+    // array = [ C A C C G G G G C T A C G A T ]
 
     willLikelySurvive() {
       let dnaScore = 0;
@@ -89,10 +90,16 @@ const pAequorFactory = (number, array) => {
       }
       if (Math.floor(100/15 * dnaScore) > 60) {
         surviveStrand.push(this.dna)
+        console.log('sobreviveu');
       }
-      return console.log(surviveStrand);
+      return surviveStrand;
     }
   }
 };
 
-console.log (pAequorFactory(2, mockUpStrand()))
+let resultado = pAequorFactory(2, mockUpStrand());
+console.log(resultado);
+
+console.log(resultado.willLikelySurvive());
+
+console.log(resultado.mutate());
