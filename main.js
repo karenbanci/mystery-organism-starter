@@ -57,7 +57,7 @@ const pAequorFactory = (number, array) => {
     // ex1 e ex2 possuem apenas o 3º elemento em comum ( 'T') e, portanto, possuem 25% (1/4) de seu DNA em comum. A mensagem resultante leria algo como: specimen #1 and specimen #2 have 25% DNA in common
     compareDNA() {
       let mutateDNA = this.dna;
-      let originalDNA = mockUpStrand;
+      let originalDNA = mockUpStrand();
       let comparative = 0;
 
       // pegando cada elemento da array DNA mutado
@@ -71,6 +71,7 @@ const pAequorFactory = (number, array) => {
           }
         }
         console.log(`Specimen 1 e Specimen 2 tem ${Math.floor(100/15 * comparative)} % DNA em comum`);
+        return true;
       }
     },
 
@@ -103,3 +104,5 @@ console.log(resultado);
 console.log(resultado.willLikelySurvive());
 
 console.log(resultado.mutate());
+
+console.log(resultado.compareDNA());
